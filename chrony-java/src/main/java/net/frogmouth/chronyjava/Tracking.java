@@ -169,13 +169,13 @@ public class Tracking {
         long exp, coef;
         long x;
 
-        exp = floatValue >> FLOAT_COEF_BITS;
+        exp = (floatValue & 0xFFFFFFFFL) >> FLOAT_COEF_BITS;
         if (exp >= (1 << (FLOAT_EXP_BITS - 1))) {
             exp -= (1 << FLOAT_EXP_BITS);
         }
         exp -= FLOAT_COEF_BITS;
 
-        coef = floatValue % (1 << FLOAT_COEF_BITS);
+        coef = (floatValue % (1 << FLOAT_COEF_BITS) & 0x01FFFFFFL);
         if (coef >= (1 << (FLOAT_COEF_BITS - 1))) {
             coef -= (1 << FLOAT_COEF_BITS);
         }

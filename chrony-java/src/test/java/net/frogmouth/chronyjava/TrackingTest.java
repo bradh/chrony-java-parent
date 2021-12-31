@@ -154,14 +154,14 @@ public class TrackingTest {
         assertEquals(uut.getRefId(), 0xCB0E00FB);
         assertEquals(uut.getStratum(), 3);
         assertEquals(uut.getLeapStatus(), 0);
-        // assertEquals(uut.getCurrentCorrection(), 0.000340983, 0.000000001);
+        assertEquals(uut.getCurrentCorrection(), 0.000340983, 0.000000001);
         assertEquals(uut.getLastOffset(), -0.000039472, 0.000000001);
-        // assertEquals(uut.getRmsOffset(), -0.000265594, 0.000000001);
+        assertEquals(uut.getRmsOffset(), 0.000265594, 0.000000001);
         assertEquals(uut.getFreqPPM(), -33.185, 0.001);
         assertEquals(uut.getResidFreqPPM(), -0.009, 0.001);
-        // assertEquals(uut.getSkewPPM(), 0.192, 0.001);
-        // assertEquals(uut.getRootDelay(), 0.017642239, 0.000000001);
-        // assertEquals(uut.getRootDispersion(), 0.002488230, 0.000000001);
+        assertEquals(uut.getSkewPPM(), 0.192, 0.001);
+        assertEquals(uut.getRootDelay(), 0.017642239, 0.000000001);
+        assertEquals(uut.getRootDispersion(), 0.002488230, 0.000000001);
         assertEquals(uut.getLastUpdateInterval(), 517.2, 0.1);
     }
 }
