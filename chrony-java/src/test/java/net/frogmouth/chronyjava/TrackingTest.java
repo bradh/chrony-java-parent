@@ -5,6 +5,8 @@ package net.frogmouth.chronyjava;
 import static org.testng.Assert.*;
 
 import java.io.IOException;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import org.testng.annotations.Test;
 
 /** Unit tests for Tracking class */
@@ -14,7 +16,6 @@ public class TrackingTest {
 
     @Test
     public void checkTrackingParse() throws IOException {
-        // TODO: add data
         byte[] bytes =
                 new byte[] {
                     (byte) 0x06,
@@ -139,7 +140,8 @@ public class TrackingTest {
          * 0060 f2 a3 11 94 16 81 4f 69
          *
          * Reference ID : CB0E00FB (toc.ntp.telstra.net)
-         * Stratum : 3 Ref time (UTC) : Thu Dec 30 06:08:58 2021
+         * Stratum : 3
+         * Ref time (UTC) : Thu Dec 30 06:08:58 2021
          * System time : 0.000340983 seconds slow of NTP time
          * Last offset : -0.000039472 seconds
          * RMS offset : 0.000265594 seconds
@@ -154,6 +156,9 @@ public class TrackingTest {
         assertEquals(uut.getRefId(), 0xCB0E00FB);
         assertEquals(uut.getStratum(), 3);
         assertEquals(uut.getLeapStatus(), 0);
+        assertEquals(
+                uut.getTimeSpec().getZonedDateTime(),
+                ZonedDateTime.of(2021, 12, 30, 6, 8, 58, 789590862, ZoneOffset.UTC));
         assertEquals(uut.getCurrentCorrection(), 0.000340983, 0.000000001);
         assertEquals(uut.getLastOffset(), -0.000039472, 0.000000001);
         assertEquals(uut.getRmsOffset(), 0.000265594, 0.000000001);

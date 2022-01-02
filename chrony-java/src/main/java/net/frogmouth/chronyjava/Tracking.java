@@ -12,6 +12,7 @@ public class Tracking {
     private int refId;
     private int stratum;
     private int leapStatus;
+    private TimeSpec timeSpec;
     private double currentCorrection;
     private double lastOffset;
     private double rmsOffset;
@@ -37,7 +38,7 @@ public class Tracking {
                 byte[] ipaddr = dis.readNBytes(20);
                 tracking.setStratum(dis.readUnsignedShort());
                 tracking.setLeapStatus(dis.readUnsignedShort());
-                byte[] timespec = dis.readNBytes(12);
+                tracking.setTimeSpec(TimeSpec.fromBytes(dis.readNBytes(12)));
                 int currentCorrection = dis.readInt();
                 tracking.setCurrentCorrection(FloatToDouble(currentCorrection));
                 int lastOffset = dis.readInt();
@@ -83,6 +84,14 @@ public class Tracking {
 
     public void setStratum(int stratum) {
         this.stratum = stratum;
+    }
+
+    public TimeSpec getTimeSpec() {
+        return timeSpec;
+    }
+
+    public void setTimeSpec(TimeSpec timeSpec) {
+        this.timeSpec = timeSpec;
     }
 
     public int getLeapStatus() {
