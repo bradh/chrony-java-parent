@@ -20,6 +20,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sortpom.version>3.0.0</sortpom.version>
     </properties>
+        <scm>
+        <connection>scm:git:git://github.com/bradh/chrony-java-parent.git</connection>
+        <developerConnection>scm:git:https://github.com/bradh/chrony-java-parent.git</developerConnection>
+        <url>https://github.com/bradh/chrony-java-parent.git</url>
+    </scm>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
