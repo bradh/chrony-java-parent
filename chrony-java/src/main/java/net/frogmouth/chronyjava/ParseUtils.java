@@ -1,25 +1,24 @@
 package net.frogmouth.chronyjava;
 
 class ParseUtils {
-    private static final long FLOAT_EXP_MASK = 0x7E000000L;
-    private static final long FLOAT_EXP_SIGN_MASK = 0x80000000L;
-    private static final long FLOAT_COEFF_MAGNITUDE_MASK = 0x00FFFFFFL;
-    private static final long FLOAT_COEFF_SIGN_MASK = 0x01000000L;
-    private static final int FLOAT_COEF_BITS = 25;
+    private static final long FLOAT_EXPONENT_MAGNITUDE_MASK = 0x3F;
+    private static final long FLOAT_EXPONENT_SIGN_MASK = 0x80000000L;
+    private static final long FLOAT_COEFFICIENT_MAGNITUDE_MASK = 0x00FFFFFFL;
+    private static final long FLOAT_COEFFICIENT_SIGN_MASK = 0x01000000L;
+    private static final int FLOAT_COEFFICIENT_BITS = 25;
 
     static double ChronyFloatToJavaDouble(int chronyFloat) {
-        long exponent = (chronyFloat & FLOAT_EXP_MASK) >> FLOAT_COEF_BITS;
-        if ((chronyFloat & (FLOAT_EXP_SIGN_MASK)) == (FLOAT_EXP_SIGN_MASK)) {
+        long exponent = (chronyFloat >> FLOAT_COEFFICIENT_BITS) & FLOAT_EXPONENT_MAGNITUDE_MASK;
+        if ((chronyFloat & (FLOAT_EXPONENT_SIGN_MASK)) == (FLOAT_EXPONENT_SIGN_MASK)) {
             // Two's complement negative
-            exponent = -1 * ((~(exponent) & 0x3F) + 1);
+            exponent = -1 * ((~exponent & FLOAT_EXPONENT_MAGNITUDE_MASK) + 1);
         }
-        long coefficient = (chronyFloat & FLOAT_COEFF_MAGNITUDE_MASK);
-        if ((chronyFloat & FLOAT_COEFF_SIGN_MASK) == FLOAT_COEFF_SIGN_MASK) {
+        long coefficient = (chronyFloat & FLOAT_COEFFICIENT_MAGNITUDE_MASK);
+        if ((chronyFloat & FLOAT_COEFFICIENT_SIGN_MASK) == FLOAT_COEFFICIENT_SIGN_MASK) {
             // Two's complement negative
-            coefficient = -1 * ((~(coefficient) & FLOAT_COEFF_MAGNITUDE_MASK) + 1);
+            coefficient = -1 * ((~coefficient & FLOAT_COEFFICIENT_MAGNITUDE_MASK) + 1);
         }
-
-        return coefficient * Math.pow(2.0, exponent - FLOAT_COEF_BITS);
+        return Math.pow(2.0, exponent - FLOAT_COEFFICIENT_BITS) * coefficient;
     }
 
     private ParseUtils() {}
