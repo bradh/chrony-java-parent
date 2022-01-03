@@ -6,8 +6,6 @@ import java.io.IOException;
 
 /** Chrony Tracking results. */
 public class Tracking {
-    private static final int FLOAT_EXP_BITS = 7;
-    private static final int FLOAT_COEF_BITS = 32 - FLOAT_EXP_BITS;
     private ReplyHeader replyHeader;
     private int refId;
     private int stratum;
@@ -40,23 +38,25 @@ public class Tracking {
                 tracking.setLeapStatus(dis.readUnsignedShort());
                 tracking.setTimeSpec(TimeSpec.fromBytes(dis.readNBytes(12)));
                 int currentCorrection = dis.readInt();
-                tracking.setCurrentCorrection(FloatToDouble(currentCorrection));
+                tracking.setCurrentCorrection(
+                        ParseUtils.ChronyFloatToJavaDouble(currentCorrection));
                 int lastOffset = dis.readInt();
-                tracking.setLastOffset(FloatToDouble(lastOffset));
+                tracking.setLastOffset(ParseUtils.ChronyFloatToJavaDouble(lastOffset));
                 int rmsOffset = dis.readInt();
-                tracking.setRmsOffset(FloatToDouble(rmsOffset));
+                tracking.setRmsOffset(ParseUtils.ChronyFloatToJavaDouble(rmsOffset));
                 int freqPPM = dis.readInt();
-                tracking.setFreqPPM(FloatToDouble(freqPPM));
+                tracking.setFreqPPM(ParseUtils.ChronyFloatToJavaDouble(freqPPM));
                 int residFreqPPM = dis.readInt();
-                tracking.setResidFreqPPM(FloatToDouble(residFreqPPM));
+                tracking.setResidFreqPPM(ParseUtils.ChronyFloatToJavaDouble(residFreqPPM));
                 int skewPPM = dis.readInt();
-                tracking.setSkewPPM(FloatToDouble(skewPPM));
+                tracking.setSkewPPM(ParseUtils.ChronyFloatToJavaDouble(skewPPM));
                 int rootDelay = dis.readInt();
-                tracking.setRootDelay(FloatToDouble(rootDelay));
+                tracking.setRootDelay(ParseUtils.ChronyFloatToJavaDouble(rootDelay));
                 int rootDispersion = dis.readInt();
-                tracking.setRootDispersion(FloatToDouble(rootDispersion));
+                tracking.setRootDispersion(ParseUtils.ChronyFloatToJavaDouble(rootDispersion));
                 int lastUpdateInterval = dis.readInt();
-                tracking.setLastUpdateInterval(FloatToDouble(lastUpdateInterval));
+                tracking.setLastUpdateInterval(
+                        ParseUtils.ChronyFloatToJavaDouble(lastUpdateInterval));
                 return tracking;
             }
         }
@@ -172,23 +172,5 @@ public class Tracking {
 
     public void setLastUpdateInterval(double lastUpdateInterval) {
         this.lastUpdateInterval = lastUpdateInterval;
-    }
-
-    private static double FloatToDouble(int floatValue) {
-        long exp, coef;
-        long x;
-
-        exp = (floatValue & 0xFFFFFFFFL) >> FLOAT_COEF_BITS;
-        if (exp >= (1 << (FLOAT_EXP_BITS - 1))) {
-            exp -= (1 << FLOAT_EXP_BITS);
-        }
-        exp -= FLOAT_COEF_BITS;
-
-        coef = (floatValue % (1 << FLOAT_COEF_BITS) & 0x01FFFFFFL);
-        if (coef >= (1 << (FLOAT_COEF_BITS - 1))) {
-            coef -= (1 << FLOAT_COEF_BITS);
-        }
-
-        return coef * Math.pow(2.0, exp);
     }
 }

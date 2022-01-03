@@ -15,6 +15,16 @@
         <tag>HEAD</tag>
         <url>https://github.com/bradh/chrony-java-parent.git</url>
     </scm>
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://domain:port/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://domain:port/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
     <properties>
         <googleformatter.maven.plugin.version>1.7.5</googleformatter.maven.plugin.version>
         <jacoco.version>0.8.7</jacoco.version>
@@ -26,7 +36,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sortpom.version>3.0.0</sortpom.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -185,7 +194,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <nrOfIndentSpace>4</nrOfIndentSpace>
                     <sortProperties>true</sortProperties>
-                    <keepBlankLines>true</keepBlankLines>
+                    <keepBlankLines>false</keepBlankLines>
                     <sortDependencies>scope</sortDependencies>
                 </configuration>
                 <executions>
