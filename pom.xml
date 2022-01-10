@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.frogmouth.chronyjava</groupId>
     <artifactId>chrony-java-parent</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.5</version>
     <packaging>pom</packaging>
     <modules>
         <module>chrony-java</module>
@@ -12,7 +12,7 @@
     <scm>
         <connection>scm:git:git://github.com/bradh/chrony-java-parent.git</connection>
         <developerConnection>scm:git:https://github.com/bradh/chrony-java-parent.git</developerConnection>
-        <tag>chrony-java-parent-0.3</tag>
+        <tag>chrony-java-parent-0.5</tag>
         <url>https://github.com/bradh/chrony-java-parent.git</url>
     </scm>
     <distributionManagement>
