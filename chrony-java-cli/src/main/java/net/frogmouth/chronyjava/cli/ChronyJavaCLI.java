@@ -1,4 +1,4 @@
-package net.frogmouth.chronyjavacli;
+package net.frogmouth.chronyjava.cli;
 
 import java.io.IOException;
 import java.util.logging.Level;

@@ -1,4 +1,4 @@
-package net.frogmouth.chronyjavacli;
+package net.frogmouth.chronyjava.cli;
 
 public class Main {
 
