@@ -10,6 +10,7 @@
     <artifactId>chrony-java</artifactId>
     <version>0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <properties></properties>
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
@@ -21,6 +22,14 @@
             <plugin>
                 <groupId>com.theoryinpractise</groupId>
                 <artifactId>googleformatter-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
             </plugin>
         </plugins>
     </build>
