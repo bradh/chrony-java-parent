@@ -5,6 +5,20 @@
     <artifactId>chrony-java-parent</artifactId>
     <version>0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>Chrony Java Parent</name>
+    <description>Aggregator for Chrony Java project</description>
+    <url>https://github.com/bradh/chrony-java-parent</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Brad Hards</name>
+        </developer>
+    </developers>
     <modules>
         <module>chrony-java</module>
         <module>chrony-java-cli</module>
