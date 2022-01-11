@@ -3,15 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.frogmouth.chronyjava</groupId>
-        <artifactId>chrony-java-parent</artifactId>
+        <artifactId>chrny-java-parent</artifactId>
         <version>0.8-SNAPSHOT</version>
     </parent>
-    <artifactId>chrony-java-cli</artifactId>
+    <artifactId>chrny-java-cli</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>java-chrony-candm</artifactId>
+            <artifactId>java-chrny-candm</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
