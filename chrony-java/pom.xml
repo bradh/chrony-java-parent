@@ -4,13 +4,13 @@
     <parent>
         <groupId>net.frogmouth.chronyjava</groupId>
         <artifactId>chrny-java-parent</artifactId>
-        <version>0.8</version>
+        <version>0.9-SNAPSHOT</version>
     </parent>
     <groupId>net.frogmouth.chronyjava</groupId>
     <artifactId>java-chrny-candm</artifactId>
-    <version>0.8</version>
+    <version>0.9-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <properties></properties>
+    <properties />
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
